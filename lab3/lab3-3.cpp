@@ -39,7 +39,7 @@ public:
 		cin >> printSpeed;
 		cout << "\n";
 
-		return Printer(markName, paperFormat, price, printSpeed);
+		return Printer(markName, paperFormat, printSpeed, price);
 	}
 
 	int Price() { return this->price; }
@@ -76,7 +76,7 @@ void cheapPrinter(Printer* printers, int size)
 
 int main()
 {
-	int size = 5;
+	int size = 3;
 	Printer* printers = new Printer[size];
 
 	for (int i = 0; i < size; i++)
