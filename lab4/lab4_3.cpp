@@ -1,3 +1,4 @@
+#include<iostream>
 #include<string>
 using namespace std;
 
@@ -7,15 +8,13 @@ protected:
 	string firstName;
 	string lastName;
 	int age;
-	string ID;
 
 public:
-	Contractor(string firstName = "", string lastName = "", string ID = "", int age = 0)
+	Contractor(string firstName = "", string lastName = "", int age = 0)
 	{
 		this->firstName = firstName;
 		this->lastName = lastName;
 		this->age = age;
-		this->ID = ID;
 	}
 
 	Contractor(Contractor& obj)
@@ -23,19 +22,9 @@ public:
 		this->firstName = obj.firstName;
 		this->lastName = obj.lastName;
 		this->age = obj.age;
-		this->ID = obj.ID;
 	}
 
-	Contractor& operator=(Contractor& obj)
-	{
-		Contractor temp;
-		temp.firstName = obj.firstName;
-		temp.lastName = obj.lastName;
-		temp.age = obj.age;
-		temp.ID = obj.ID;
-
-		return temp;
-	}
+	virtual void Print() = 0;
 };
 
 class JuridicalPerson : public Contractor
@@ -44,23 +33,95 @@ private:
 	string contract;
 
 public:
-	JuridicalPerson(string firstName = "", string lastName = "", string ID = "", int age = 0, string contract = "") :
-		Contractor(firstName, lastName, ID, age)
+	JuridicalPerson(string firstName = "", string lastName = "", int age = 0, string contract = "") :
+		Contractor(firstName, lastName, age)
 	{
 		this->contract = contract;
 	}
+
+	JuridicalPerson(JuridicalPerson& obj) : Contractor(obj.firstName, obj.lastName, obj.age)
+	{
+		this->contract = obj.contract;
+		cout << "JuridicalPerson copy\n\n";
+	}
+
+	void operator=(JuridicalPerson& obj)
+	{
+		this->firstName = obj.firstName;
+		this->lastName = obj.lastName;
+		this->age = obj.age;
+		this->contract = obj.contract;
+
+		cout << "JuridicalPerson operator=\n\n";
+	}
+
+	void Print()
+	{
+		cout << "Juridical person info:\n"
+			<< "First name: " << this->firstName
+			<< "\nLast name: " << this->lastName
+			<< "\nAge: " << this->age
+			<< "\nContract: " << this->contract << "\n\n";
+	}
 };
 
-class PhisicalPerson : public Contractor
+class NaturalPerson : public Contractor
 {
 private:
-	string contract;
+	string profession;
 
 public:
-	JuridicalPerson(string firstName = "", string lastName = "", string ID = "", int age = 0, string contract = "") :
-		Contractor(firstName, lastName, ID, age)
+	NaturalPerson(string firstName = "", string lastName = "", int age = 0, string profession = "") :
+		Contractor(firstName, lastName, age)
 	{
-		this->contract = contract;
+		this->profession = profession;
+	}
+
+	NaturalPerson(NaturalPerson& obj) : Contractor(obj.firstName, obj.lastName, obj.age)
+	{
+		this->profession = obj.profession;
+
+		cout << "NaturalPerson copy\n\n";
+	}
+
+	void operator=(NaturalPerson& obj)
+	{
+		this->firstName = obj.firstName;
+		this->lastName = obj.lastName;
+		this->age = obj.age;
+		this->profession = obj.profession;
+
+		cout << "NaturalPerson operator=\n\n";
+	}
+
+	void Print()
+	{
+		cout << "Natural person info:\n"
+			<< "First name: " << this->firstName
+			<< "\nLast name: " << this->lastName
+			<< "\nAge: " << this->age
+			<< "\nProfession: " << this->profession << "\n\n";
 	}
 };
 
+int main()
+{
+	NaturalPerson teacher("Mark", "Smith", 28, "English teacher");
+	JuridicalPerson lawyer("Diana", "Willson", 30, "Lawyer");
+	teacher.Print();
+	lawyer.Print();
+
+	NaturalPerson teacherCopy = teacher;
+	teacherCopy.Print();
+	JuridicalPerson lawyerCopy = lawyer;
+	lawyerCopy.Print();
+
+	NaturalPerson copyOfTeacherCopy;
+	JuridicalPerson copyOfLawyerCopy;
+	copyOfTeacherCopy = teacherCopy;
+	copyOfTeacherCopy.Print();
+	copyOfLawyerCopy = lawyerCopy;
+	copyOfLawyerCopy.Print();
+
+	return 0;
+}
