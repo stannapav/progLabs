@@ -182,6 +182,7 @@ private:
 	double vitaminB;
 
 public:
+	Storage::AmountGet; //that's how you restore
 
 	Beetroot(int amount = 0, int storagePeriod = 0, Date deliveryDate = { 0, 0 }, double radius = 0.0, double vitaminB = 0.0)
 		:Storage(amount, storagePeriod, deliveryDate)
