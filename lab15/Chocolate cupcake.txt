@@ -1,0 +1,12 @@
+Recipe for Chocolate cupcake:
+unsalted butter 4.000000 tablespoon (price: 2.500000)
+vegetable oil 0.250000 cup (price: 5.000000)
+water 0.500000 cup (price: 0.000000)
+all-purpose flour 1.000000 cup (price: 10.000000)
+cocoa powder 0.300000 cup (price: 7.000000)
+baking soda 0.000000 teaspoon (price: 9.700000)
+kosher salt 0.000000 teaspoon (price: 11.200000)
+egg 1.000000 item (price: 17.000000)
+buttermilk 0.250000 cup (price: 20.000000)
+pure vanilla extract 1.000000 teaspoon (price: 13.000000)
+Total price: 95.400000
